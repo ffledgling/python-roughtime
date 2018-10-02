@@ -1,0 +1,7 @@
+# Ignore these files
+*.swp
+*.swo
+*.pyc
+
+# Cloudflare/Google etc Golang/C++ implementations
+reference-implementations/*
