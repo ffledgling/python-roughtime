@@ -1,0 +1,27 @@
+Python Roughtime
+================
+
+WIP python client for the [roughtime protocol](https://roughtime.googlesource.com/roughtime/+/master/PROTOCOL.md).
+
+Packet Structure
+----------------
+
+All values in the protocol *must* be little endian. Take care when encoding and decoding integers, strings etc.
+
+| Field/Section | Offset                | Length (in bytes)      | Type   | Values           | Description                                                                                                                                                                                                                                                                                                                                                                                                                             | Example |
+|---------------|-----------------------|------------------------|--------|------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------|
+| tag_num       | 0                     | 4                      | uint32 | [0, 2**32)       | Lists the number of tags defined the packet                                                                                                                                                                                                                                                                                                                                                                                             | 2       |
+|---------------|-----------------------|------------------------|--------|------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------|
+| offset(s)     | 4                     | [0, 4*(tag_num-1))     | uint32 | [0, len(packet)) | Offset table indicating the start of every sub-section (denoted by a tag) in the *body* of the packet (i.e offsets from the end of the protocol header). In cases where the `tag_num` is 0 or 1, the offset section maybe entirely ommitted since the meaning is obvious. Implication: The *first* value in the offset table always indicates the start of the *second* tag. Valid Roughtime packets always have at least two sections. |         |
+|---------------|-----------------------|------------------------|--------|------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------|
+| tag(s)        | 4*(tag_num)           | [0, 4*(tag_num)        | uint32 | Anything         | Name/identifier for a particular subsection in the packet. The roughtime protocol specifies predefined sections for different types of interactions                                                                                                                                                                                                                                                                                     |         |
+|---------------|-----------------------|------------------------|--------|------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------|
+| Body          | 4 + 4*(2*tag_num - 1) | [0,1024 - len(header)) | *      | Anything         | Binary blob of data to be indexed in using offsets and tags. The interpretation of the data is based on the meaning assigned to sections (out of band)                                                                                                                                                                                                                                                                                  |         |
+
+
+Official References
+-------------------
+
+* Protocol Description: <https://roughtime.googlesource.com/roughtime/+/master/PROTOCOL.md>
+* Roughtime Implementation by Google: <https://roughtime.googlesource.com/roughtime/+/master/>
+* Cloudflare's Implementation: <https://github.com/cloudflare/roughtime>
