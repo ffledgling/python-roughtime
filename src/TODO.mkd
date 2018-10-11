@@ -29,5 +29,7 @@ Tests
 
 - [ ] Check valid requests
 - [ ] Check malformed packets
+    - [ ] Incorrect number of bytes/offsets
+    - [ ] Invalid cert/signature test
 - [ ] End-to-end test against cloudflare and google's roughtime
 - [ ] End to end test againt (safe-ish) NTP (i.e time works)
