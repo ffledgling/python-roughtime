@@ -23,3 +23,11 @@ Official References
 * Protocol Description: <https://roughtime.googlesource.com/roughtime/+/master/PROTOCOL.md>
 * Roughtime Implementation by Google: <https://roughtime.googlesource.com/roughtime/+/master/>
 * Cloudflare's Implementation: <https://github.com/cloudflare/roughtime>
+
+Extra Reading
+-------------
+
+* Signatures vs Decryption in cryptography I: <https://crypto.stackexchange.com/a/9897/62507>
+* Signatures vs Decryption in cryptography II: <https://www.cs.cornell.edu/courses/cs5430/2015sp/notes/rsa_sign_vs_dec.php>
+* How does a public key verify a signature? <https://stackoverflow.com/q/18257185/1220089>
+* "how digital signature verification process works" (sic) <https://security.stackexchange.com/a/8039/17500>

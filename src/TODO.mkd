@@ -1,0 +1,33 @@
+Safety Checks
+=============
+
+- [ ] How do you ensure a section of the packet is valid? (and prevent it from
+  being parsed and typecast incorrectly and subsequently used, leading to a
+  security vuln)
+- [ ] How do you
+
+
+Feature Completeness
+====================
+
+- [ ] Verify responses
+- [ ] Support traversal of the merkel tree
+- [ ] Support chained nonces instead of one of fresh ones every time
+- [ ] Support multiple roughtime servers in a single client
+- [ ] Check temp key is valid within time range
+
+Misc
+====
+
+- [ ] Factor out code into a proper client class
+- [ ] Create an abstracted data-type that can be used to store the roughtime
+      respose and dispaly each section and subsection in two views: raw and
+      parsed. eg. data.raw[b'CERT'] should give me the raw bytes in that section, but Data[
+
+Tests
+=====
+
+- [ ] Check valid requests
+- [ ] Check malformed packets
+- [ ] End-to-end test against cloudflare and google's roughtime
+- [ ] End to end test againt (safe-ish) NTP (i.e time works)
